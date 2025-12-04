@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>T7 · v1 — Sol cruzando</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+  <body>
+  <script>
+  // Estado del sol (variables propias del objeto "sol")
+  let x_s, y_s, d_s, r_s;
+  let x_m, y_m, v_m, d_m, r_m, dO_m, a_m, ia_m
+  let x_v, y_v, v_v, d_v, r_v, dO_v, a_v, ia_v
+  let x_t, y_t, v_t, d_t, r_t, dO_t, a_t, ia_t
+  let x_M, y_M, v_M, d_M, r_M, dO_M, a_M, ia_M
+  let x_j, y_j, v_j, d_j, r_j, dO_j, a_j, ia_j
+  let x_S, y_S, v_S, d_S, r_S, dO_S, a_S, ia_S
+  let x_u, y_u, v_u, d_u, r_u, dO_u, a_u, ia_u
+  let x_n, y_n, v_n, d_n, r_n, dO_n, a_n, ia_n
+  let x_l, y_l, v_l, d_l, r_l, dO_l, a_l, ia_l
+  
+
+  function setup() {
+    createCanvas(1300, 1300);
+	
+	// Diámetros, Ángulos e Incrementos de ángulo
+	
+
+	//Mercurio
+	dO_m = 0.17 * min(width, height);
+	a_m = 0.1;
+	ia_m = 0.03;
+	//venus
+	dO_v=0.24 * min(width, height);
+	a_v = PI/4;
+	ia_v = 0.012;
+	//tierra
+	dO_t=0.32*min(width,height);
+	a_t=0.5;
+	ia_t=0.01;
+	//Marte
+	dO_M = 0.41 * min(width, height);
+	a_M = 3*PI/4;
+	ia_M = 0.008;
+	//júpiter
+	dO_j = 0.57 * min(width, height);
+	a_j = PI;
+	ia_j = 0.004;
+	// Saturno
+	dO_S = 0.75 * min(width, height);
+	a_S = 5*PI/4;
+	ia_S = 0.003;
+	//Urano
+	dO_u = 0.8* min(width, height);
+	ai_u = 3*PI/2;
+	ia_u = 0.002;
+	// neptuno
+	dO_n = 0.9* min(width, height);
+	a_n = 7*PI/4;
+	ia_n = 0.0015;
+	// Luna
+	dO_l = dO_t/6;
+	a_l = 0;
+	ia_l = 0.6;
+	// Meteorito
+
+  }
+
+  function draw() {
+    // Escena base
+    background(0, 0, 0); 
+    noStroke();
+  
+ 
+	 // Sol
+    x_s	= width/2
+	y_s = height/2
+	d_s = 0.10 * min(width, height)
+    fill(255, 210, 0);
+    circle(x_s, y_s, d_s);
+	// Mercurio
+	x_m = x_s+(dO_m/2)*cos(a_m);
+    y_m = y_s+(dO_m/2)*sin(a_m);
+	d_m = 0.10 * d_s;
+	fill(200, 200, 200);
+	circle(x_m, y_m, d_m);
+	// venus
+	x_v = x_s+(dO_v/2)*cos(a_v);
+    y_v = y_s+(dO_v/2)*sin(a_v);
+	d_v = 0.25 * d_s;
+	fill(170, 40, 80);
+	circle(x_v, y_v, d_v);
+	// tierra
+    x_t = x_s+(dO_t/2)*cos(a_t);
+    y_t = y_s+(dO_t/2)*sin(a_t);
+	d_t = 0.26 * d_s;
+	fill(20, 20, 200);
+	circle(x_t, y_t, d_t);
+	//Marte
+    x_M = x_s+(dO_M/2)*cos(a_M);
+    y_M = y_s+(dO_M/2)*sin(a_M);
+    d_M = 0.25 * d_s;	
+	fill(230, 20, 30);
+	circle(x_M, y_M, d_M);
+	//Júpiter 
+	x_j = x_s+(dO_j/2)*cos(a_j);
+    y_j = y_s+(dO_j/2)*sin(a_j);
+	d_j = 0.8 * d_s;
+	fill(160, 56, 79);
+	circle(x_j, y_j, d_j);
+	//Saturno
+	x_S = x_s+(dO_S/2)*cos(a_S);
+    y_S = y_s+(dO_S/2)*sin(a_S);
+	d_S = 0.7 * d_s;
+	fill(219, 151, 31);
+	circle(x_S, y_S, d_S);
+	//Urano
+	x_u = x_s+(dO_u/2)*cos(a_u);
+    y_u = y_s+(dO_u/2)*sin(a_u);
+	d_u = 0.5 * d_s;
+	fill(10, 50, 230);
+	circle(x_u, y_u, d_u);
+	//neptuno
+	x_n = x_s+(dO_n/2)*cos(a_n);
+    y_n = y_s+(dO_n/2)*sin(a_n);
+	d_n = 0.38 * d_s
+	fill(10, 70, 200);
+	circle(x_n, y_n, d_n);
+	// Luna
+	x_l = x_t+(dO_l/2)*cos(a_l);
+	y_l = y_t+(dO_l/2)*sin(a_l);
+	d_l = d_t * 0.3;
+	noStroke();
+	fill(250);
+	circle(x_l, y_l, d_l);
+
+
+//Actualizo el ángulo en cada frame
+
+a_t=a_t+ia_t;
+a_m=a_m+ia_m;
+a_v=a_v+ia_v;
+a_M=a_M+ia_M;
+a_j=a_j+ia_j;
+a_S=a_S+ia_S;
+a_u=a_u+ia_u;
+a_n=a_n+ia_n;
+a_l=a_l+ia_l
+
+
+
+
+
+  }
+  </script>
+  </body>
+</html>
