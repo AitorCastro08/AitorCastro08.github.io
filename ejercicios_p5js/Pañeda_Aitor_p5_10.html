@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A1 — Variables (estado + movimiento simple)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+  <body>
+  <script>
+  
+  //Variables
+  
+  let xS, yS, dS, rS, vS
+  function setup() {
+  createCanvas(700, 500);
+  dS = 0.18 * width;        // diámetro del Sol 
+  rS = dS / 2;
+  yS = 0.35 * height;       // altura relativa
+  xS = -rS;                 // arranca entrando por la izquierda
+  vS = width / 400;         // velocidad proporcional al ancho
+  }
+  function draw() {
+  // 3.1 Fondo decidido por la posición del Sol (if … else)
+  if (xS <= 2*width + rS) {
+    // Día mientras el borde izquierdo del Sol no ha salido por la derecha
+    background(135, 206, 235);   // azul
+  } else {
+    // Noche cuando el Sol ya salió completamente por la derecha
+    background(0);               // negro
+  }
+
+  // 3.2 Suelo (decoración)
+  noStroke();
+  fill(20, 120, 40);
+  rect(0, 0.8*height, width, 0.2*height);
+
+  // 3.3 Sol (si está fuera, no se verá)
+  noStroke();
+  fill(255, 210, 0);
+  circle(xS, yS, dS);
+
+  // 3.4 Movimiento constante
+  xS = xS + vS;
+
+  // 3.5 Reinicio por posición (noche suficientemente larga)
+  if (xS >= 1.5*width - rS) {
+    xS = -rS;   // reentrar por la izquierda
+  }
+}
+  </script>
+  </body>
+</html>
