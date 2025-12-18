@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A1 — Variables (estado + movimiento simple)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+  <body>
+  <script>
+  
+  //Variables
+  let xS, yS, dS, rS, vS; //Sol
+  let xL, yL, dL, rL, vL; //Luna
+  let dia, mes, anio; // Calendario
+  function setup() {
+  createCanvas(400, 400);
+  
+  // Clanedrio
+  dia = 1
+  mes = 1
+  anio = 2025
+   //Sol
+  dS = min(width, height) * 0.20; 
+  rS = dS/2; // Tamaño del Sol 
+  xS = -rS; // Entra por izquierda
+  yS = height/4; // Altura
+  vS = width/400; // Velocidad Sol
+  //Luna 
+  dL = dS*0.5; // Tamaño de la Luna
+  rL = dL/2; 
+  xL = -width-rL; //Entra por izquierda mas lejos que el Sol
+  yL = height/3 // Altura
+  vL = vS //Velocidad Luna
+  }
+  
+  function draw() { 
+  
+  noStroke() // No trazo
+  if (xS <= width + rS) {
+  fill(0); // Dia 
+  }
+  else { fill(255); // Noche
+  }
+ 
+  
+
+  
+  // Reset día + incremento de mes
+  if (dia > 30) { dia = 1; mes = mes + 1; } 
+ 
+ // Reset de mes + incremento de año 
+  if (mes > 12) { mes = 1; anio = anio + 1; } 
+  
+  
+  
+  if (xS<=width+rS) {
+  background(0,0,255); // Azul
+  }
+  else { background(10); //Negro
+  }
+  
+  noStroke(); 
+  fill(245, 324, 10);
+  circle(xS, yS, dS);
+  noStroke();
+  fill(200);
+  circle(xL, yL, dL);
+  
+    
+  textSize(20); //Tamaño letra
+  text("fecha: (" + dia + ") (" + mes+ ") (" + anio + ")", 10, 20);
+  
+  
+  xS = xS + vS;
+  xL = xL + vL;
+  if (xL > 2*width + rL) { 
+  xL = -rL }
+  
+  if (xS > 2*width + rS) { 
+  xS = -rS*1.3; 
+   dia = dia + 1; 
+   }
+   }
+   
+   
+   
+   
+
+  </script>
+  </body>
+</html>
