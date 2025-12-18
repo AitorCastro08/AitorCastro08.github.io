@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A1 — Variables (estado + movimiento simple)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+  <body>
+  <script>
+  
+  //Variables
+  let xS, yS, dS, rS, vS; //Sol
+  let xL, yL, dL, rL, vL; //Luna
+  function setup() {
+  createCanvas(400, 400);
+  
+  //Sol
+  dS = min(width, height) * 0.20; 
+  rS = dS/2; // Tamaño del Sol 
+  xS = -rS; // Entra por izquierda
+  yS = height/4; // Altura
+  vS = width/400; // Velocidad Sol
+  //Luna 
+  dL = dS*0.5; // Tamaño de la Luna
+  rL = dL/2; 
+  xL = -width-rL; //Entra por izquierda mas lejos que el Sol
+  yL = height/3 // Altura
+  vL = vS //Velocidad Luna
+  }
+  
+  function draw() { 
+  
+  if (xS<=width+rS) {
+  background(0,0,255); // Azul
+  }
+  else { background(10); //Negro
+  }
+  
+  noStroke(); 
+  fill(245, 324, 10);
+  circle(xS, yS, dS);
+  noStroke();
+  fill(200);
+  circle(xL, yL, dL);
+  
+  xS = xS + vS;
+  xL = xL + vL;
+  
+  if (xS > 2*width + rS) { 
+  xS = -rS; 
+  // Sol reentra por la izquierda xL = -width - rL;
+    }
+}
+  </script>
+  </body>
+</html>
+  
+  
+  
+  
